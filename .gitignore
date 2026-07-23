@@ -1,0 +1,29 @@
+# --- data cache: the raw UCI dataset is fetched, never committed ---
+data/
+
+# --- credentials must never enter this repository ---
+.qiskit/
+*.env
+.env
+*credentials*
+*token*.json
+
+# --- environments / caches ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# --- paper build intermediates (the final PDF *is* committed) ---
+paper/_build/
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.toc
