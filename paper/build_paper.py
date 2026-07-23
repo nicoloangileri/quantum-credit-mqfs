@@ -284,7 +284,7 @@ consumed by a standard SVC with balanced class weights (precomputed Gram
 matrix; $C$ chosen by inner 3-fold CV over the same grid as the classical
 RBF-SVC, its exact classical twin). On real hardware $K$ is estimated by the
 compute--uncompute circuit
-$\mathcal{U}_{\Phi(x')}^{\dagger}\mathcal{U}_{\Phi(x)}\ket{0}^{\otimes d}$
+$\mathcal{U}_{\Phi(x')}^{\dagger}\mathcal{U}_{\Phi(x)}|0\rangle^{\otimes d}$
 (probability of the all-zeros outcome); on the statevector simulator used
 here Eq.~\eqref{eq:kernel} is evaluated exactly, i.e.\ our quantum results
 are \emph{noise-free upper bounds} on NISQ performance. Since features must
@@ -301,8 +301,8 @@ repetitions, __VQCPARAMS__ parameters at $d = 4$) to the same feature-map
 states and measures the qubit-parity observable
 $P = Z^{\otimes d}$:
 \begin{equation}
-p(x;\theta) \;=\; \tfrac{1}{2}\Bigl(1 - \bra{\Phi(x)} U(\theta)^{\dagger} P\,
-U(\theta) \ket{\Phi(x)}\Bigr),
+p(x;\theta) \;=\; \tfrac{1}{2}\Bigl(1 - \langle\Phi(x)| U(\theta)^{\dagger} P\,
+U(\theta) |\Phi(x)\rangle\Bigr),
 \label{eq:vqc}
 \end{equation}
 trained by COBYLA (__VQCITER__ iterations, __VQCRESTARTS__ restarts, best

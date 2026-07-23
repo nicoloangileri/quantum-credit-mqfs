@@ -13,10 +13,12 @@ from pathlib import Path
 import matplotlib
 from experiments.render_tables import LABELS, ORDER
 from fpdf import FPDF
+from fpdf.enums import XPos, YPos
 
 from quantum_credit import config
 
 MARGIN = 18
+NEXT_LINE = {"new_x": XPos.LMARGIN, "new_y": YPos.NEXT}
 
 
 def _dejavu() -> tuple[str, str]:
@@ -44,12 +46,12 @@ class Paper(FPDF):
     def h1(self, text: str) -> None:
         self.set_font("DV", "B", 13)
         self.ln(4)
-        self.multi_cell(0, 7, text)
+        self.multi_cell(0, 7, text, **NEXT_LINE)
         self.ln(1)
 
     def para(self, text: str, size: float = 9.5) -> None:
         self.set_font("DV", "", size)
-        self.multi_cell(0, 4.6, text)
+        self.multi_cell(0, 4.6, text, **NEXT_LINE)
         self.ln(1.5)
 
     def equation(self, expr: str, tmpdir: str, name: str) -> None:
@@ -78,7 +80,7 @@ class Paper(FPDF):
             self.add_page()
         self.image(str(path), x=(self.w - width) / 2, w=width)
         self.set_font("DV", "", 8)
-        self.multi_cell(0, 4.2, caption, align="C")
+        self.multi_cell(0, 4.2, caption, align="C", **NEXT_LINE)
         self.ln(3)
 
 
@@ -97,11 +99,11 @@ def render_fpdf(R: dict, out: Path) -> Path:
     pdf.set_font("DV", "B", 15)
     pdf.multi_cell(0, 8,
                    "Classical versus Quantum Machine Learning for Credit Default "
-                   "Prediction: An Honest Benchmark at Matched Sample Sizes")
+                   "Prediction: An Honest Benchmark at Matched Sample Sizes", **NEXT_LINE)
     pdf.set_font("DV", "", 10)
     pdf.multi_cell(0, 5.5,
                    "Nicolò Angileri — Mediterranean Quantitative Finance Society (MQFS) "
-                   "Working Paper — July 2026")
+                   "Working Paper — July 2026", **NEXT_LINE)
     pdf.ln(3)
 
     with tempfile.TemporaryDirectory() as tmp:
@@ -151,7 +153,7 @@ def render_fpdf(R: dict, out: Path) -> Path:
             f"VQC: RealAmplitudes ansatz ({R['vqc_params']} parameters), parity observable, "
             f"COBYLA ({R['vqc_maxiter']} iterations, {R['vqc_restarts']} restarts), "
             "class-weighted cross-entropy:")
-        pdf.equation(r"$p(x;\theta) = \tfrac12(1 - \langle\Phi(x)|U^\dagger(\theta)\,"
+        pdf.equation(r"$p(x;\theta) = \frac{1}{2}(1 - \langle\Phi(x)|U^\dagger(\theta)\,"
                      r"Z^{\otimes d}\,U(\theta)|\Phi(x)\rangle)$", tmp, "vqc")
         pdf.para(
             "Both quantum models run on exact statevector simulation (noise-free upper "
@@ -191,8 +193,11 @@ def render_fpdf(R: dict, out: Path) -> Path:
                 r.append(f"{a['mean']:.4f}±{a['std']:.4f}")
             r.append(f"{agg[str(max(sizes))][name]['total_time_s']['mean']:.1f}")
             rows.append(r)
-        pdf.table(["Model (C/Q)"] + [f"n={s}" for s in sizes] + ["t@2000 (s)"],
-                  rows, [58, 33, 33, 33, 21])
+        pdf.table(
+            ["Model (C/Q)"] + [f"n={s}" for s in sizes] + [f"t@{max(sizes)} (s)"],
+            rows,
+            [58] + [33] * len(sizes) + [21],
+        )
         pdf.figure("auc_vs_n.png",
                    "Fig. 4 — Learning curves: classical (solid) vs quantum (dashed).")
         pdf.figure("timing.png", "Fig. 5 — Honest wall-clock accounting at n=2000.")
