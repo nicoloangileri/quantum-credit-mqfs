@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, please cite it as below."
+title: >-
+  quantum-credit-mqfs: an honest classical-vs-quantum machine learning
+  benchmark on real credit-risk data
+authors:
+  - family-names: Angileri
+    given-names: Nicolò
+    email: nikoooo969@gmail.com
+    affiliation: Mediterranean Quantitative Finance Society (MQFS)
+year: 2026
+type: software
+license: MIT
+keywords:
+  - credit scoring
+  - quantum machine learning
+  - quantum kernels
+  - cost-sensitive learning
+  - reproducible benchmark
