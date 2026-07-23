@@ -48,6 +48,12 @@ src = ["src", "tests", "experiments", "paper"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "W", "UP", "B"]
 
+[tool.ruff.lint.per-file-ignores]
+# experiment scripts bootstrap sys.path before imports so they run both as
+# modules (python -m experiments.x) and as files (python experiments/x.py)
+"experiments/*" = ["E402"]
+"paper/*" = ["E402"]
+
 [tool.ruff.lint.flake8-bugbear]
 # CostMatrix is a frozen dataclass; using it as a default argument is safe.
 extend-immutable-calls = ["CostMatrix", "quantum_credit.costs.CostMatrix"]

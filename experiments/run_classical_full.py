@@ -12,6 +12,11 @@ Every number lands in results/classical_full.json.
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import numpy as np
 from sklearn.inspection import permutation_importance
 from sklearn.model_selection import StratifiedKFold, cross_val_predict

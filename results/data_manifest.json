@@ -1,0 +1,13 @@
+{
+  "source_url": "https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls",
+  "file": "data/raw/default_of_credit_card_clients.xls",
+  "sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "bytes": 5539328,
+  "cleaning": {
+    "education_recoded": 345,
+    "marriage_recoded": 54,
+    "n_rows": 30000,
+    "n_defaults": 6636
+  },
+  "default_rate": 0.2212
+}

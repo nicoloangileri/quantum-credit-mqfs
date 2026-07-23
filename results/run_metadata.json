@@ -1,0 +1,18 @@
+{
+  "finished_utc": "2026-07-23T02:54:14+00:00",
+  "total_wall_clock_s": 420.1974107879996,
+  "stage_wall_clock_s": {
+    "classical_full": 57.294885194001836,
+    "matched_subsamples": 362.26749113499864,
+    "figures": 0.6306534169998486,
+    "readme_tables": 0.004381041999295121
+  },
+  "environment": {
+    "python": "3.10.12",
+    "platform": "Linux-6.8.0-124-generic-aarch64-with-glibc2.35",
+    "numpy": "2.2.6",
+    "scikit_learn": "1.7.2",
+    "qiskit": "2.5.0"
+  },
+  "note": "stages executed in resumable units by a sandbox driver replicating experiments/run_all.py exactly (same functions, seeds, fold order); wall-clock is the sum of unit times"
+}

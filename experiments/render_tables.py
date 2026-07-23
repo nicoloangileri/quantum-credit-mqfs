@@ -8,9 +8,13 @@ comes from an actual run.
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import argparse
 import re
-import sys
 
 from experiments.common import load_results
 from quantum_credit import config

@@ -362,10 +362,16 @@ Table~\ref{tab:matched} is the central result. At every matched training size
 the best classical model is at least as good as the best quantum model; at
 $n = 2000$ the gap between the best classical (__BESTC2000L__,
 __BESTC2000__) and the best quantum (__BESTQ2000L__, __BESTQ2000__) is
-__DELTA__ AUC. The quantum kernel at $d=8$ does not improve on $d=4$, and the
-VQC trails both, as expected for a __VQCPARAMS__-parameter model. The
-expected-cost comparison at the fixed Bayes threshold (Table~\ref{tab:cost})
-tells the same story in money terms. Figure~\ref{fig:aucn} overlays learning
+__DELTA__ AUC. The quantum kernel at $d=8$ trails $d=4$ at the two smaller
+sizes and edges past it only at $n=2000$, remaining well below every
+classical baseline; the VQC trails throughout, as expected for a
+__VQCPARAMS__-parameter model. In expected-cost terms (Table~\ref{tab:cost})
+the classical RBF-SVC is the cheapest decision-maker at every size; the
+Platt-calibrated quantum-kernel probabilities are competitive with the tree
+ensembles at this fixed threshold --- a calibration effect, not a ranking
+reversal. The VQC's parity-derived probabilities concentrate near $0.5$, so
+at the fixed $1/6$ threshold it rejects essentially the whole portfolio: its
+expected cost sits at the reject-all bound. Figure~\ref{fig:aucn} overlays learning
 curves; Figure~\ref{fig:timing} shows honest wall-clock costs --- the QK-SVC
 pays a large simulation overhead (dominated by test-set embedding and the
 $n_{\text{test}} \times n$ kernel block), and on hardware the same object
