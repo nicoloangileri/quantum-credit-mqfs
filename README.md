@@ -4,7 +4,7 @@
 real credit-risk data, with finance-aware evaluation.**
 
 Mediterranean Quantitative Finance Society (MQFS) working paper project —
-Nicolò Angileri, 2026. MIT licence.
+Nicolò Angileri. MIT licence.
 
 > **No quantum advantage is claimed.** At every training size a fidelity
 > quantum kernel can currently reach, classical models match or beat the

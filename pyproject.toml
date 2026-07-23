@@ -5,7 +5,7 @@ description = "An honest three-way benchmark of classical vs quantum machine lea
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Nicolò Angileri", email = "nikoooo969@gmail.com" }]
+authors = [{ name = "Nicolò Angileri" }]
 dependencies = [
     "numpy>=1.26",
     "pandas>=2.1",

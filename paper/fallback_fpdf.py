@@ -103,7 +103,7 @@ def render_fpdf(R: dict, out: Path) -> Path:
     pdf.set_font("DV", "", 10)
     pdf.multi_cell(0, 5.5,
                    "Nicolò Angileri — Mediterranean Quantitative Finance Society (MQFS) "
-                   "Working Paper — July 2026", **NEXT_LINE)
+                   "Working Paper", **NEXT_LINE)
     pdf.ln(3)
 
     with tempfile.TemporaryDirectory() as tmp:
