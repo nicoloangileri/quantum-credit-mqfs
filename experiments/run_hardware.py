@@ -61,7 +61,7 @@ def main() -> int:
     payload["selected_features"] = red.selected
     save_results("hardware_kernel.json", payload)
     print(f"backend={res.backend} job={res.job_id} MAE(sim, measured)={res.mae:.4f}")
-    for (i, j), ks, km in zip(res.pairs, res.k_simulated, res.k_measured):
+    for (i, j), ks, km in zip(res.pairs, res.k_simulated, res.k_measured, strict=True):
         print(f"  K[{i},{j}]  sim={ks:.4f}  measured={km:.4f}")
     return 0
 

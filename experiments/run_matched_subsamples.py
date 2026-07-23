@@ -143,7 +143,11 @@ def main() -> None:
                 )
 
             # -------- quantum: shared feature reduction per (size, seed) --------
-            for d, tag in ((config.N_QUBITS, "qk_svc_d4"), (config.N_QUBITS_ROBUSTNESS, "qk_svc_d8")):
+            qk_variants = (
+                (config.N_QUBITS, "qk_svc_d4"),
+                (config.N_QUBITS_ROBUSTNESS, "qk_svc_d8"),
+            )
+            for d, tag in qk_variants:
                 red = AngleReducer(d=d, method="mi", seed=seed)
                 ang_sub = red.fit_transform(X_sub, y_sub)
                 ang_te = red.transform(X_te)
